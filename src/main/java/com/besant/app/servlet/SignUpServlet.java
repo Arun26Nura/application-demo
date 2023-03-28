@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.besant.app.repo.SignUpRepo;
+
 /**
  * Servlet implementation class SignUpServlet
  */
@@ -26,8 +28,21 @@ public class SignUpServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		String userName=request.getParameter("username");
+		String password=request.getParameter("psw");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		
+		SignUpRepo repo= new SignUpRepo();
+		boolean isInserted= repo.insertIntoProfile(userName, password, email, firstName, lastName, phone);
+		
+		if(isInserted)
+			response.sendRedirect("login");
+		else
+			response.sendRedirect("error");
+		
 	}
 
 }

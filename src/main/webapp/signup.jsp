@@ -125,7 +125,7 @@ hr {
 
 <div >
 
-  <form class="modal-content" action="/action_page.php">
+  <form class="modal-content" action="signup" method="post">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
@@ -142,10 +142,10 @@ hr {
       <label for="firstName"><b>FirstName</b></label>
       <input type="text" placeholder="Enter FirstName" name="firstName" required>
       
-      <label for="lastName"><b>Email</b></label>
+      <label for="lastName"><b>Last Name</b></label>
       <input type="text" placeholder="Enter lastName" name="lastName" required>
       
-      <label for="phone"><b>Email</b></label>
+      <label for="phone"><b>Phone</b></label>
       <input type="text" placeholder="Enter Phone" name="phone" required>
 
 
