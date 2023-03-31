@@ -1,8 +1,5 @@
-<%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.List" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%response.sendRedirect("login"); %>
+<h1> profile Page</h1>
+<p> Name: ${username}</p><br>
+<p> Phone: ${phone}</p><br>
+<p> Email: ${email}</p><br>
+    <a href="logout">Logout</a>
 
 </body>
 </html>

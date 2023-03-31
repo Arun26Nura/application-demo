@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.besant.app.repo.LoginRepo;
 
@@ -24,9 +25,12 @@ public class LoginServlet extends HttpServlet{
 		String userName=req.getParameter("uname");
 		String password=req.getParameter("psw");
 		
+		HttpSession session= req.getSession();
+		
 		LoginRepo repo= new LoginRepo();
 		boolean isValidUser= repo.checkValidUser(userName, password);
 		if(isValidUser) {
+			session.setAttribute("userid", userName);
 			res.sendRedirect("profile");
 		}else {
 			System.out.println("failed");

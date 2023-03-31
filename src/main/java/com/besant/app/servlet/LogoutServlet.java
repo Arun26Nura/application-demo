@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.besant.app.pojo.Profile;
-import com.besant.app.repo.LoginRepo;
-
 /**
- * Servlet implementation class ProfileServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/profile")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +27,12 @@ public class ProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session= request.getSession();
-		String userName=(String)session.getAttribute("userid");
-
-		
-		System.out.println("Do GET PROFILE");
-		LoginRepo repo= new LoginRepo();
-		
-		Profile profile= repo.getuser(userName);
-		System.out.println(userName);
-		request.setAttribute("username",userName);
-		request.setAttribute("email",profile.getEmail());
-		request.setAttribute("phone", profile.getPhone());
-		request.getRequestDispatcher("profile.jsp").forward(request, response);
-	
-		}
+		session.removeAttribute("userid");
+		session.invalidate();	
+		System.out.println("Session Invalidated");
+		response.sendRedirect("login");
+	}
 
 }
